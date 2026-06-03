@@ -9,4 +9,4 @@ A Swift package with utilities for VoiceOver, Switch Control, and Dynamic Type.
 
 ## Installation
 Add this package via Swift Package Manager in Xcode:
-File → Add Package Dependencies → enter your repo URL
+File → Add Package Dependencies → https://github.com/Rouxinelo/iOSAccessibilityUtils
