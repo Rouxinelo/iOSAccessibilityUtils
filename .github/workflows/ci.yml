@@ -32,5 +32,15 @@ jobs:
     needs: build
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode.app
+        
       - name: Test
-        run: swift test
+        run: |
+          xcodebuild \
+            -scheme iOSAccessibilityUtils \
+            -sdk iphonesimulator \
+            -destination 'platform=iOS Simulator,OS=18.5,name=iPhone 16' \
+            test
+
