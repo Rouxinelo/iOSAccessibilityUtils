@@ -18,4 +18,8 @@ public extension AutomationCapable where Self: UIViewController {
     func setScreenIdentifier(_ identifier: String) {
         view.accessibilityIdentifier = identifier
     }
+    
+    func getScreenIdentifier() -> String? {
+        view.accessibilityIdentifier
+    }
 }
