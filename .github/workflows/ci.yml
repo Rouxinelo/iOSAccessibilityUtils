@@ -24,7 +24,7 @@ jobs:
           xcodebuild \
             -scheme iOSAccessibilityUtils \
             -sdk iphonesimulator \
-            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            -destination 'platform=iOS Simulator,OS=18.5,name=iPhone 16' \
             build
 
   test:
