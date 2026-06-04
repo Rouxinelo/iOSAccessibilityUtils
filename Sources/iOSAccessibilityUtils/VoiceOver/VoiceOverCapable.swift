@@ -32,8 +32,9 @@ public extension VoiceOverCapable where Self: UIView {
         self.isAccessibilityElement = isAccessible
     }
     
-    func setAsAccessibilityContainer(_ elements: [UIView]) {
-        elements.forEach { $0.isAccessibilityElement = false }
+    func setAsAccessibilityContainer() {
+        accessibilityElements = nil
+        accessibilityElementsHidden = true
         setAsAccessibleElement(true)
     }
     
@@ -49,6 +50,10 @@ public extension VoiceOverCapable where Self: UIView {
 public extension VoiceOverCapable where Self: UIViewController {
     var headerView: UIView? {
         navigationItem.titleView
+    }
+    
+    func setTitleView(with view: UIView) {
+        navigationItem.titleView = view
     }
     
     func setTitleViewAccessibility(label: String) {
