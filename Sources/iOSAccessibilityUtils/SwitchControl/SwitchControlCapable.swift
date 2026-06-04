@@ -10,7 +10,7 @@ public extension SwitchControlCapable where Self: UIView {
 }
 
 public extension SwitchControlCapable where Self: UIViewController {
-    func configureScanningOrder(_ views: [UIView]) {
+    func setSwitchControlOrder(_ views: [UIView]) {
         view.accessibilityElements = views
     }
 }
