@@ -24,39 +24,35 @@ extension UIView {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .padding(padding)
     }
-
-    func preview(
-        position: VerticalAlignment = .center,
-        width: PreviewSize = .flexible,
-        height: PreviewSize = .flexible
-    ) -> some View {
+    
+    func preview(position: VerticalAlignment = .center,
+                 width: PreviewSize = .flexible,
+                 height: PreviewSize = .flexible) -> some View {
         ZStack(alignment: Alignment(horizontal: .center, vertical: position)) {
             Color.clear
             Preview(view: self)
                 .modifier(PreviewSizeModifier(width: width, height: height))
         }
     }
-
+    
     private struct Preview: UIViewRepresentable {
         let view: UIView
         func makeUIView(context: Context) -> UIView { view }
         func updateUIView(_ uiView: UIView, context: Context) {}
     }
-
+    
     private struct PreviewSizeModifier: ViewModifier {
         let width: PreviewSize
         let height: PreviewSize
-
+        
         func body(content: Content) -> some View {
             content
                 .frame(
                     width: width.fixedValue,
                     height: height.fixedValue
                 )
-                .frame(
-                    maxWidth:  width  == .full ? .infinity : nil,
-                    maxHeight: height == .full ? .infinity : nil
-                )
+                .frame(maxWidth:  width  == .full ? .infinity : nil,
+                       maxHeight: height == .full ? .infinity : nil)
         }
     }
 }
