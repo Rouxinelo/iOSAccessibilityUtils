@@ -27,7 +27,7 @@ public extension DynamicFontCapable where Self: UITraitEnvironment {
     }
 
     func isAboveSizeCategory(_ threshold: UIContentSizeCategory) -> Bool {
-        traitCollection.preferredContentSizeCategory >= threshold
+        traitCollection.preferredContentSizeCategory > threshold
     }
 
     func onFontSize(
