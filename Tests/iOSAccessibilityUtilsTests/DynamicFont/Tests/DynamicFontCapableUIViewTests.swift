@@ -4,7 +4,6 @@ import UIKit
 @testable import iOSAccessibilityUtils
 
 struct DynamicFontCapableUIViewTests {
-
     @Test
     @MainActor
     func test_isAccessibilityCategory_whenCategoryIsNotAccessibility_thenMustReturnFalse() async throws {
