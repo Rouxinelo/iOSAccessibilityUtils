@@ -1,6 +1,7 @@
 # AccessibilityUtils
 
 A Swift package with utilities for VoiceOver, Switch Control, and Dynamic Type.
+There are also some utilities that can help with automation.
 
 ## Requirements
 - iOS 15+
