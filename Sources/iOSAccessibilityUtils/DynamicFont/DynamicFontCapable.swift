@@ -76,7 +76,7 @@ public extension DynamicFontCapable where Self: UITraitEnvironment {
 
 // MARK: - UIView
 public extension DynamicFontCapable where Self: UIView {
-    func onContentSizeCategoryChange(_ handler: @escaping (UIContentSizeCategory) -> Void) {
+    func onContentSizeCategoryChange(_ handler: @escaping @MainActor (UIContentSizeCategory) -> Void) {
         if #available(iOS 17, *) {
             registerForTraitChanges([UITraitPreferredContentSizeCategory.self]) {
                 (self: Self, _: UITraitCollection) in
@@ -88,7 +88,9 @@ public extension DynamicFontCapable where Self: UIView {
                 object: nil,
                 queue: .main
             ) { _ in
-                handler(UIApplication.shared.preferredContentSizeCategory)
+                Task { @MainActor in
+                    handler(UIApplication.shared.preferredContentSizeCategory)
+                }
             }
         }
     }
@@ -98,14 +100,16 @@ public extension DynamicFontCapable where Self: UIView {
 public extension DynamicFontCapable where Self: UIViewController {
     @discardableResult
     func observeContentSizeCategoryChanges(
-        handler: @escaping (UIContentSizeCategory) -> Void
+        handler: @escaping @MainActor (UIContentSizeCategory) -> Void
     ) -> NSObjectProtocol {
         NotificationCenter.default.addObserver(
             forName: UIContentSizeCategory.didChangeNotification,
             object: nil,
             queue: .main
         ) { _ in
-            handler(UIApplication.shared.preferredContentSizeCategory)
+            Task { @MainActor in
+                handler(UIApplication.shared.preferredContentSizeCategory)
+            }
         }
     }
 }
